@@ -91,6 +91,9 @@ public:
         return MxVector2F( x1 + ((x2-x1)/2.0f), y1 + ((y2-y1)/2.0f));
     }
 
+  /*! Returns true if the given \a point is inside or on the edge of the QxRect; otherwise returns false.
+              \sa intersects(). */
+  bool contains( const MxVector<2,T> &point ) const;
 
     /*! Returns true if this MxRect intersects with the given \a MxRect (i.e. there
               is a non-empty area of overlap between them), otherwise returns false.
@@ -150,12 +153,16 @@ public:
         y2 += top; // top
     }
 
+
+
     /*! Translates this rect by dx amount. */
     void translateX( const T dx );
     void translateY( const T dy );
     void translate( const T dx, const T dy );
     void translate( const MxVector<2,T> &d  );
 
+  MxRect<T> translated( const T dx, const T dy ) const;
+  MxRect<T> translated( const MxVector<2,T> &translation ) const;
 
 private:
     T x1; // left
@@ -179,10 +186,10 @@ inline MxRect<T>::MxRect()
 template<typename T>
 inline MxRect<T>::MxRect(T left, T right, T bottom, T top)
 {
-    x1 = left;
-    y1 = bottom;
-    x2 = right;
-    y2 = top;
+  x1 = left;
+  y1 = bottom;
+  x2 = right;
+  y2 = top;
 }
 
 template<typename T>
@@ -215,6 +222,14 @@ inline T MxRect<T>::height() const
     return (top() - bottom());
 }
 
+template<typename T>
+bool MxRect<T>::contains( const MxVector<2,T> &point ) const
+{
+    if( point.x() >= x1 && point.x() <= x2 && point.y() >= y1 && point.y() <= y2 )
+        return true;
+
+    return false;
+}
 
 template<typename T>
 void MxRect<T>::translateX( const T dx )
@@ -233,10 +248,10 @@ void MxRect<T>::translateY( const T dy )
 template<typename T>
 void MxRect<T>::translate( const T dx, const T dy )
 {
-    x1 += dx;
-    x2 += dx;
-    y1 += dy;
-    y2 += dy;
+        x1 += dx;
+        x2 += dx;
+        y1 += dy;
+        y2 += dy;
 }
 
 template<typename T>
@@ -246,6 +261,20 @@ void MxRect<T>::translate( const MxVector<2,T> &d  )
     x2 += d[0];
     y1 += d[1];
     y2 += d[1];
+}
+
+template<typename T>
+MxRect<T> MxRect<T>::translated( const T dx, const T dy ) const
+{
+    MxRect r(x1 + dx, x2 + dx, y1 + dy, y2 + dy);
+    return r;
+}
+
+template<typename T>
+MxRect<T> MxRect<T>::translated( const MxVector<2,T> &translation ) const
+{
+    MxRect r(x1 + translation.x(), x2 + translation.x(), y1 + translation.y(), y2 + translation.y());
+    return r;
 }
 
 #endif

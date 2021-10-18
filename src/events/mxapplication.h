@@ -10,9 +10,10 @@
 #include "mxrenderer.h"
 #include "mxmouseevent.h"
 #include "mxpainter.h"
+#include "mxaggregation.h"
 
 
-#define QX_COLORBUFFER_PRESERVED
+class MxIconAtlas;
 
 
 class MxApplication
@@ -22,7 +23,8 @@ public:
     MxApplication();
     virtual ~MxApplication();
 
-    static MxApplication* instance();
+
+    void init( MxAbstractAtlas *atlas );
 
 
     // graphics
@@ -49,8 +51,8 @@ public:
     virtual bool isRedrawNeeded();
 
 
-    static MxApplication *sApp;
     MxRenderer pRenderer;
+    MxAggregation pGuiAggregation;
     MxWidget *pWidget;
 
     bool mSizeChanged;

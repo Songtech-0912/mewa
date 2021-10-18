@@ -1,31 +1,29 @@
-# Mewa
+# Mewa Framework
 
-Mewa is a new node-graph based compositor, dedicated to simplifying the chaotic world of motion graphics for artists. Download it at <https://www.mewatools.com/>
+Mewa framework is a C++ OpenGL based UI framework designed from ground-up to deliver higher performance applications across desktop and mobile devices.
 
-## Why another compositor?
+It holds a whole collection of reusable classes on which the Mewa application is built on.
 
-Mewa is a new take on compositing software, focused on:
+To know more about the Mewa framework check the [developers page](https://mewatools.github.io/mewa/).
 
-- Fast previews in full resolution
-- Imediate preview, everywhere
-- More intuitive UX/UI
-- Extensibility and customizability
+**About the Mewa application**
 
-## Features
+Mewa is a new node-graph based compositor, dedicated to simplifying the chaotic world of motion graphics for artists, bringing:
 
-- Scripting and GLSL support
+- Faster/Imediate previews, everywhere
+- Previews in full resolution, always
+- More intuitive user interface
+- Dedicated script engine for:
+  - Faster execution of expressions/scripts
+  - Guaranteed UI responsiveness
+  - Easier extensibility and customizability
 
-## Developing Mewa
 
-Mewa's source code is organized into modules so that each module can be tested and developed independently from the whole application.
+You can find more information about Mewa at <https://www.mewatools.com/>.
 
-Each module can be worked on as a self contained Qt application. Current modules and respective Qt application are as follows:
-
-| Module | Location | Notes |
-|--------|----------| ----- |
-| Color Wheel | [src/gui/colorselector/test_colorwheel/](src/gui/colorselector/test_colorwheel/) | N/A |
-| Store Buttons | [src/storewindow/test_storebuttons/](src/storewindow/test_storebuttons/) | **1)** This app renders only the Store buttons (currently without text). **2)** Button rendering code is within `drawButtons()` function in file [src/storewindow/mxstoreview.cpp](src/storewindow/mxstoreview.cpp). **3)** The Store buttons Look&Feel still needs work: [store buttons discussion](https://github.com/Mewatools/mewa-artwork/discussions/5) |
-
+[![Discord](https://img.shields.io/discord/827792740359340103)](https://disboard.org/server/827792740359340103)
 
 [![mewa](https://snapcraft.io/mewa/badge.svg)](https://snapcraft.io/mewa)
 [![mewa](https://snapcraft.io/mewa/trending.svg?name=0)](https://snapcraft.io/mewa)
+
+
